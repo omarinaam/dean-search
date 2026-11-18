@@ -130,7 +130,7 @@ function fmt(iso) { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ""); retur
 async function load() {
   try {
     const r = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
-    if (r.status === 404) throw new Error("لم تُنشر أي بيانات بعد. افتح البرنامج في مكتب العميد واضغط «إنهاء العمل» لنشرها.");
+    if (r.status === 404) throw new Error("البيانات لم تظهر بعد على الموقع. إذا نُشرت قبل قليل فانتظر دقيقتين ثم أعد تحميل الصفحة؛ وإن لم تُنشر بعد فاضغط «إنهاء العمل» أو «حفظ ونشر الآن» في البرنامج.");
     if (!r.ok) throw new Error("تعذّر تحميل البيانات (" + r.status + "). أعد تحميل الصفحة.");
     const p = await r.json();
     if (!Array.isArray(p.records)) throw new Error("البيانات المنشورة بالصيغة القديمة. افتح البرنامج واضغط «موقع البحث» ثم «حفظ ونشر الآن».");
